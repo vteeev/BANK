@@ -5,6 +5,9 @@ from users import*
 def main(user):
     is_running=True
 
+    operation=user.transactionMenager
+    history=operation.transaction_history
+
     while is_running:
         print("**********************")
         print("   Banking Program")
@@ -20,14 +23,12 @@ def main(user):
 
         match choise:
             case '1':
-                operation=user.transactionMenager
-                history=operation.transaction_history
                 print(f"Balance: {history.sum_kwota()}")
             case '2':
 
                 value=float(input("Suma wplaty: "))
                 operation.make_deposit(value,"deposit")
-                #history.add_transaction(deposit)
+
             case '3':
 
                 value=float(input("Suma wyplaty: "))*(-1)
@@ -38,7 +39,6 @@ def main(user):
                 recipiate=int(input("Nr konta: "))*(-1)
                 operation.make_transfer(value,"bank-transfer",recipiate)
             case '5':
-
                 history.show_history()
             case '6':
                 is_running=False
